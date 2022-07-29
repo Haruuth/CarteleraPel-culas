@@ -1,4 +1,16 @@
 #buscador {
     display: flex;
     justify-content: center;
+    
+
+    
+}
+
+#buscador >  input {
+    border-radius: 10px;
+    border-color: #2500ff;
+    height: 23px;
+    width: 155px;
+    background-color: aqua;
+    text-align: center;
 }

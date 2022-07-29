@@ -14,7 +14,6 @@ function Home() {
     useEffect (function(){
         if (!Peliculas.length ) {
             ( async () => {
-                //TODO: cambiar la url de la api por una mas generica
                 let dataMovies = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=cb3c459016a424abc5e3f9b307c45a5e&language=en-US&page=1")
                 
                 
@@ -37,7 +36,9 @@ function Home() {
     //     return[arg, modifArg]
     // }
 
-    const cardStyle = { display: "flex", flexDirection: "row" };
+    const cardStyle = { display: "flex", flexDirection: "row", marginTop: "200px", padding: "50px", justifyContent: "flex-start",
+                      };
+
     const border = {border: "1px solid #000"};
 
     const switchSelectedMovie = (arg) => {
@@ -46,24 +47,33 @@ function Home() {
     
     return (
         <>
-        <div id="buscador">
-            <input placeholder='Buscar'/>
+        <div style={{position : "fixed", top: 0, flexDirection: "column", display: "flex", justifyContent: "center", width: "100%", alignItems: "center", heigth: "36%", background: "rgb(0 0 0 / 82%)"}}>
+            <div id="buscador">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    width="16" height="16" fill="currentColor" 
+                    class="bi bi-search" 
+                    viewBox="0 0 16 16"> 
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> 
+                    </svg>
+                </span>
+                <input onChange={} placeholder='Buscar'/>
 
-        </div>
-
-        {
-            SelectedMovie.id
+            </div>
+            {
+                SelectedMovie.id
                 ? <SelectedMovies movie = {SelectedMovie}/> 
                 : <></>
-        }
+            }
+        </div>
         
         <div style={cardStyle}> {
             Peliculas.length
             ?   Peliculas.map( pelicula => {
                 return (
                         <div onClick = {() => switchSelectedMovie(pelicula)} style={border}>
-                            <h1> { pelicula.title } </h1>
-                            <img style={{ width:"300px" }} src = { "https://image.tmdb.org/t/p/original" + pelicula.poster_path } alrt=""/>
+                            <h3> { pelicula.title } </h3>
+                            <img style={{ width: "220px", height: "300px" }} src = { "https://image.tmdb.org/t/p/original" + pelicula.poster_path } alrt=""/>
                         </div>
                     )
                 })
